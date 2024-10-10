@@ -1,8 +1,7 @@
 package com.erick.workshopMongo.recursos;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.erick.workshopMongo.DTO.UsuarioDTO;
 import com.erick.workshopMongo.dominio.Usuario;
 import com.erick.workshopMongo.servicos.ServicoUsuario;
 
@@ -19,8 +19,9 @@ public class RecursosUsuario {
 	@Autowired
 	private ServicoUsuario servico;
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Usuario>> acharTodos(){		
+	public ResponseEntity<List<UsuarioDTO>> acharTodos(){		
 		List<Usuario> lista = servico.acharTodos();
-		return ResponseEntity.ok().body(lista);
+		List<UsuarioDTO> listaDTO = lista.stream().map(novoUsuario -> new UsuarioDTO(novoUsuario)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDTO);
 	}
 }
