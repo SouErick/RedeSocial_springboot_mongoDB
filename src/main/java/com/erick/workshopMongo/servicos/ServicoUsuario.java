@@ -24,6 +24,10 @@ public class ServicoUsuario {
 	public Usuario inserir(Usuario obj) {
 		return repo.insert(obj);
 	}
+	public void remover(String id) {
+		procurarPorId(id);
+		repo.deleteById(id);
+	}
 	public Usuario fromDTO(UsuarioDTO objDTO) {
 		return new Usuario(objDTO.getId(), objDTO.getNome(), objDTO.getEmail());
 	}

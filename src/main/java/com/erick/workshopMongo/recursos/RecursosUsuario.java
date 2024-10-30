@@ -39,7 +39,13 @@ public class RecursosUsuario {
 	public ResponseEntity<Void> inserir(@RequestBody UsuarioDTO objDTO){	
 		Usuario obj = servico.fromDTO(objDTO);
 		obj = servico.inserir(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> remover(@PathVariable String id){	
+		servico.remover(id);
+		return ResponseEntity.noContent().build();
 	}
 }
