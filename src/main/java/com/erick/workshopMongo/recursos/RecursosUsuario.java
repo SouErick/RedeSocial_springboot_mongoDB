@@ -48,4 +48,12 @@ public class RecursosUsuario {
 		servico.remover(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> atualizar(@RequestBody UsuarioDTO objDTO, @PathVariable String id){	
+		Usuario obj = servico.fromDTO(objDTO);
+		obj.setId(id);
+		obj = servico.atualizar(obj);
+		return ResponseEntity.noContent().build();
+	}
 }

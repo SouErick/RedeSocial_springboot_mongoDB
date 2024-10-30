@@ -28,6 +28,19 @@ public class ServicoUsuario {
 		procurarPorId(id);
 		repo.deleteById(id);
 	}
+	public Usuario atualizar(Usuario obj) {
+	    Optional<Usuario> novoObj = repo.findById(obj.getId());
+	    if (!novoObj.isPresent()) {
+	        throw new ObjetoNaoEncontradoException("Objeto não encontrado.");
+	    }
+	    Usuario usuarioAtualizado = novoObj.get();
+	    atualizarData(usuarioAtualizado, obj);
+	    return repo.save(usuarioAtualizado);
+	}
+	private void atualizarData(Usuario novoObj, Usuario obj) {
+		novoObj.setNome(obj.getNome());
+		novoObj.setEmail(obj.getEmail());
+	}
 	public Usuario fromDTO(UsuarioDTO objDTO) {
 		return new Usuario(objDTO.getId(), objDTO.getNome(), objDTO.getEmail());
 	}
