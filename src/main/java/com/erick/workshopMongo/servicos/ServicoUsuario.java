@@ -1,6 +1,7 @@
 package com.erick.workshopMongo.servicos;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,9 @@ public class ServicoUsuario {
 	private RepositorioUsuario repo;
 	public List<Usuario> acharTodos(){
 		return repo.findAll();
+	}
+	public Usuario procurarPorId(String id) {
+	    Optional<Usuario> usuario = repo.findById(id);
+	    return usuario.orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado."));
 	}
 }
