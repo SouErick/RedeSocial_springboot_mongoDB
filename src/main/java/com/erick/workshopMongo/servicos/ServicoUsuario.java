@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.erick.workshopMongo.DTO.UsuarioDTO;
 import com.erick.workshopMongo.dominio.Usuario;
 import com.erick.workshopMongo.repositorio.RepositorioUsuario;
 
@@ -19,5 +20,11 @@ public class ServicoUsuario {
 	public Usuario procurarPorId(String id) {
 	    Optional<Usuario> usuario = repo.findById(id);
 	    return usuario.orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado."));
+	}
+	public Usuario inserir(Usuario obj) {
+		return repo.insert(obj);
+	}
+	public Usuario fromDTO(UsuarioDTO objDTO) {
+		return new Usuario(objDTO.getId(), objDTO.getNome(), objDTO.getEmail());
 	}
 }
