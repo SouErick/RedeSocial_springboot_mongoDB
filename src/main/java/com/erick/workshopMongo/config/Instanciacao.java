@@ -34,6 +34,9 @@ public class Instanciacao implements CommandLineRunner{
 		Post post1 = new Post(null, sdf.parse("30/10/2024"), "Nova rede social!", "Tem que programar para postar um comentário...", new AutorDTO(marcosPaulo));
 		Post post2 = new Post(null, sdf.parse("01/11/2024"), "Ano acabando", "Meu Deus, o ano já tá acabando D:", new AutorDTO(alessandraSilva));
 		repositorioPost.saveAll(Arrays.asList(post1, post2));
+		marcosPaulo.getPosts().addAll(Arrays.asList(post1));
+		alessandraSilva.getPosts().addAll(Arrays.asList(post2));
+		repositorioUsuario.saveAll(Arrays.asList(marcosPaulo, alessandraSilva));
 	}
 
 }
