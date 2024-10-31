@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erick.workshopMongo.DTO.UsuarioDTO;
+import com.erick.workshopMongo.dominio.Post;
 import com.erick.workshopMongo.dominio.Usuario;
 import com.erick.workshopMongo.servicos.ServicoUsuario;
 
@@ -55,5 +56,10 @@ public class RecursosUsuario {
 		obj.setId(id);
 		obj = servico.atualizar(obj);
 		return ResponseEntity.noContent().build();
+	}
+	@RequestMapping(value="/{id}/posts", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> procurarPosts(@PathVariable String id){	
+		Usuario obj = servico.procurarPorId(id);
+		return ResponseEntity.ok().body(obj.getPosts());
 	}
 }
