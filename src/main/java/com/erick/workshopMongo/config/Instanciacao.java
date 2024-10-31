@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.erick.workshopMongo.DTO.AutorDTO;
+import com.erick.workshopMongo.DTO.ComentarioDTO;
 import com.erick.workshopMongo.dominio.Post;
 import com.erick.workshopMongo.dominio.Usuario;
 import com.erick.workshopMongo.repositorio.RepositorioPost;
@@ -33,6 +34,8 @@ public class Instanciacao implements CommandLineRunner{
 		repositorioUsuario.saveAll(Arrays.asList(joaoFerreira, alessandraSilva, marcosPaulo));
 		Post post1 = new Post(null, sdf.parse("30/10/2024"), "Nova rede social!", "Tem que programar para postar um comentário...", new AutorDTO(marcosPaulo));
 		Post post2 = new Post(null, sdf.parse("01/11/2024"), "Ano acabando", "Meu Deus, o ano já tá acabando D:", new AutorDTO(alessandraSilva));
+		ComentarioDTO c1 = new ComentarioDTO("Realmente!", sdf.parse("30/10/2024"), new AutorDTO(joaoFerreira));
+		post1.getComentarios().addAll(Arrays.asList(c1));
 		repositorioPost.saveAll(Arrays.asList(post1, post2));
 		marcosPaulo.getPosts().addAll(Arrays.asList(post1));
 		alessandraSilva.getPosts().addAll(Arrays.asList(post2));
