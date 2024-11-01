@@ -18,6 +18,6 @@ public class ServicoPost {
 	    return usuario.orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado."));
 	}
 	public List<Post> procurarPorTitulo(String text){
-		return repo.findByTituloContainingIgnoreCase(text);
+		return repo.procurarTitulo(text);
 	}
 }
