@@ -1,5 +1,6 @@
 package com.erick.workshopMongo.servicos;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,5 +20,9 @@ public class ServicoPost {
 	}
 	public List<Post> procurarPorTitulo(String text){
 		return repo.procurarTitulo(text);
+	}
+	public List<Post> procurarTudo(String text, Date minDate, Date maxDate){
+		maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 10000);
+		return repo.procurarTudo(text, minDate, maxDate);
 	}
 }
