@@ -15,3 +15,6 @@ O projeto oferece as seguintes funcionalidades:
 - **Comentários**: Inserção e listagem de comentários para cada post.
 - **Usuários**: Estrutura básica para criação e gerenciamento de usuários.
 - **Consultas**: Consultas personalizadas para buscar posts com vários critérios e métodos de pesquisa, Query Methods.
+
+## Vídeo Do Projeto
+- [https://youtu.be/gl5LDe44xzI] 
